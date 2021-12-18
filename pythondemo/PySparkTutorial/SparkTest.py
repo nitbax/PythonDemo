@@ -19,21 +19,32 @@ def word_count_rdd(text_file):
 
 def word_count_df(text_file):
     """Word Count Examples using Spark DataFrame"""
-    df = spark.read.text(text_file).cache()
-    df.show(truncate=False)
+    df = spark.read.text(text_file)
     # Total word count in a file
     df_words_total_count = df.withColumn(
         "total_word_count", fx.size(fx.split(fx.col("value"), " "))
     )
     df_words_total_count.show(truncate=False)
     # Total word count in a file per word in order of the frequency of the occurrence
-    df_with_words_count = (
+    df_with_words = (
         df.withColumn("word", fx.explode(fx.split(fx.col("value"), " ")))
-        .groupBy(fx.col("word"))
+        .select(fx.col("word"))
+        .cache()
+    )
+    df_with_words.show(truncate=False)
+    df_with_words_count = (
+        df_with_words.groupBy(fx.col("word"))
         .count()
         .sort(fx.col("count"), ascending=False)
     )
     df_with_words_count.show(truncate=False)
+    # search for a word in a file
+    df_with_search_word_count = (
+        df_with_words.where(fx.col("word") == fx.lit("nitin"))
+        .groupBy(fx.col("word"))
+        .count()
+    )
+    df_with_search_word_count.show(truncate=False)
 
 
 if __name__ == "__main__":
