@@ -7,11 +7,11 @@
 # To build the PythonDemo trainings
 
 Install Python  version> 3.7 and then run the below commands
-- 💞️ pip install wheel
-- 💞️ pip install egg
-- 💞️ pip install setuptools --upgrade
-- 💞️ pip install .[develop]
-- 💞️ Now you can run any programs
+- pip install wheel
+- pip install egg
+- pip install setuptools --upgrade
+- pip install .[develop]
+- Now you can run any programs
 
 <!---
 nitbax/nitbax is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
