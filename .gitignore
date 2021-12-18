@@ -42,6 +42,10 @@ local.properties
 .idea/
 .loadpath
 .cache-main
+build/
+*.egg-info/
+.egg-info/
+.egg-info
 
 # Eclipse Core
 .project

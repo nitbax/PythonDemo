@@ -16,8 +16,8 @@ def word_count_rdd(text_file):
 def word_count_df(text_file):
     df = spark.read.text(text_file)
     df_with_words_list = df.withColumn(
-        "word_list", fx.split(fx.col("value"), " ")
-    ).cache()
+        "word_list", fx.size(fx.split(fx.col("value"), " "))
+    )
     df_with_words_list.show(truncate=False)
 
 
