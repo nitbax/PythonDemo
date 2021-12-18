@@ -23,6 +23,7 @@ setup(
     extras_require={
         "develop": [
             "pyspark-stubs==2.4",
+            "black",
         ]
     },
     entry_points={
